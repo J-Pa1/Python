@@ -1,0 +1,28 @@
+print("Hello World") #prints text Hello World
+
+x = 1
+y = 2 # assigning values of x and y as 1 and 2 respectively
+
+print(x,y) #printing values of x and y respectively, in this case output will be 1 2
+
+x,y = y,x # enables swapping, x value will be stored in y and y value will be stored in x
+
+print(x,y) # prints newly assigned values of x and y, in this case 2 1
+
+x = input() # reads input from user and stores it into the variable x
+
+x = input("Enter input") # does the same operation but prints the text before recieving the input, in this case Enter input
+
+#note that even if you enter a integer value such as 12, it is stored as a string in x so if u want to convert the input value into int we use
+
+x = int(input("Enter input")) # reads value from user, it is in string form, int method converts it into integer and values gets assigned to x
+
+#some basic arthemetic operations
+
+x = 1 + 2 #addition of 1 and 2 gets stored in x, ie.3
+y = 1 * 2 #multiplication of 1 and 2 gets stored in y, ie.2
+z = 1 - 2 #substraction of 1 and 2 gets stored in z, ie.3
+a = 1 / 2 #division of 1 by 2 gets stored in a, ie.0.5
+b = 1 ** 2 #1 to the power of 2 gets stored in b, ie.1
+c = 1 % 2 #reminder(mod) of 1 by 2 gets stored in c, ie.1
+d = 1 // 2 #quotent of 1 by 2 gets stored in d, ie.0
