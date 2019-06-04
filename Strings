@@ -1,0 +1,24 @@
+x = 'abcdefghijklmnopqrstuvwxy' #assiging some string value to x, here it is abcdefghiklmnopqrstuvwxyz
+print(x[:10]) #prints first 10 characters of string x, from index 0 to 9, here abcdefghij
+print(x[-10:]) #prints last 10 characters of string x,from index -10 t0 -1, here qrstuvwxyz
+x = 'abcabca' #'abcabca' is assigned to x
+print(x.count('a')) #prints no.of times 'a' occured in string x, here 3
+print(x.find('a')) #prints first occurance index of 'a', here 0
+print(x.rfind('a')) #prints last occurance index of 'a', here 6
+x = 'abcd' #'abcd' is assigned to x
+print(' '.join(x)) #prints x string by adding ' ' in between every character in x, here a b c d. Actually join method joins string given prior to it to the end of every character of string given as parameter
+print(x.center(20)) #prints x by adding spaces on both sides in such away that output string length is 20.
+x = 'covert this into title case' #assigning a value to x
+print(x.title()) #converts x into title case and prints, here Convert This Into Title Case
+x = '  abcd  ' # assigning a value to x
+print(x.strip()) # spaces at the both ends are removed and then gets printed, here abcd.
+x = 'CONVERT INTO LOWER CASE' #assigning a value to x
+print(x.lower()) # coverts x into lower case, here convert into lower case.
+x = 'convert into upper case' # assigning a value to x
+print(x.upper()) # converts x into upper case, here convert into upper case.
+#replacing sub string from a main string into another stirng
+a = input("Enter a main string") # reads a input from user and assigns it to a, here main string
+b = input("Enter a sub string of main string") # reads a input from user and assigns it to b, asking for a sub string from a, here sub string
+c = input("Enter any string") # reads a input from user and assigns it to c, here replacing string
+a=a.replace(b,c) # sub string(b) values get replaced by replacing string (c) and assigned to a
+print(a) #prints string a
