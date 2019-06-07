@@ -1,0 +1,63 @@
+x = [1,2,3]
+y = [4,5,6] #assigning values to x and y
+
+x.append(y) # adds y as a single element to x, ie, x = [1,2,3,[4,5,6]]
+
+x = [1,2,3] # assigning value to x
+
+x.extend(y) # extends the list x with elements of y ie, x = [1,2,3,4,5,6]
+
+a = x.copy() # copies values of x to a by value, a = [1,2,3,4,5,6]
+
+a = x # even this copies values of x to a, but by reference, which means changes in a causes changes in x too as both refere to same memory location
+
+x = [1,2,3,2,3,4] # assigning values to x
+
+print(x.count(2)) # prints no.of times 2 has occured in the list x, here 2
+
+print(x.index(2)) # prints index of first occurance of 2 in the list, here 1
+
+x = [1,2,3] # assigning values to x
+
+x.insert(1,10) # inserts value 10 in the index 1 of list x, here x = [1,10,2,3]
+
+x.reverse() # reverses the list x, here x = [3,2,10,1]
+
+x.sort() # sorts the list x, here x = [1,2,3,10]
+
+# short code for finding an element whether present in the list or not
+
+x = [1,2,3,4,5,6] # assigning values to x
+key = 4 # assuming a key value, here 4
+for i in x: # variable i iterates through list x 
+ if i == key: # checks i whether equal to the key value 
+  print("Present") # if true prints 'Present'
+  break # gets out of for loop
+else:
+  print("Not present") # if the for loop doesnt get executed, we have a special feature of else for for loop, this else belongs to for loop
+# note: make sure of the indentations
+
+# short code for finding unique elements from the list
+
+x = [1,2,3,1,2,3,1,2] # assigning values to x
+z = [] # an empty list
+for i in x: # iterating variable i through list x
+ if i not in z: # checking condition whether i is there in the list z or not, if not then
+  z.append(i) # i will be added to z.
+print(z) # printing unique elements in z, here [1,2,3]
+
+# further if you wish to count the no.of times the unique value appears in the list x, we can proceed as follows
+
+for i in z: # iterating i through list z
+ print(x.count(i)) # counting unique value in x, here 3 3 2
+
+# A python program to build a new list with all even numbers from first list, even numbers should be deleted from first list. at the end, only odd numbers should remain in first list, all even numbers should be in a new list.
+
+x = [1,2,3,4,5,6] # assigning values to x
+y =[] # empty list assigned to y
+for i in x: # variable iterates through list x
+ if i%2==0: # checks condition for even, if true
+  y.append(i) # list y gets value i 
+  x.remove(i) # value i gets removed from list x
+print("New list with even numbers is ",y) # prints even values, here [2,4,6]
+print("Original list is ",x) # prints odd values left after removing even values, here [1,3,5]
