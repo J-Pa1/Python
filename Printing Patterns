@@ -1,0 +1,74 @@
+# printing triangle by taking height of triangle as input
+
+N = int(input("Enter height of triangle")) # reading a value from user and assigning it to N
+dN = N # dN is a duplicate copy of N
+n = ((2*N) - 1) # this n represents no.of '*' required for the base of triangle
+x = [] # empty output list
+a = [] # empty matrix required to create output list x
+for i in range(0,n): # traversing i through 0 to n(except n), here runing loop for n times
+  a.append(' ') # creates list a with n no.of empty spaces
+for i in range(0,N): # traversing i through 0 to N(except N), here runing loop for N times
+  x.append(a.copy()) # creating list of N no.of list a (a.copy() is used instead of a because, a.copy() sends value of a, where direct a gives reference(Adrress) which lead to same value change for every row)
+for i in range(1,N+1): # traversing i through 1 to N+1 except N
+  for j in range(0,(2*i)-1): # traversing j through 0 to (2*i)-1 execpt (2*i)-1
+    x[i-1][dN-1-j] = '*' # assigning value * to x[i][dN-1-j]
+  dN = dN + 1 # incrementing dN by 1
+# the above logic made by finding the regular pattern of indicies of '*' in triangle for different set of N values
+for i in range(N): # running loop N times
+  for j in range(n): # running loop n times
+    print(x[i][j],end = " ") # printing triangle, end = " " allows it to print the next print in same line
+  print() # this print is used to print in next line
+
+<or>
+
+N = int(input("Enter height of triangle")) # reading a value from user and assigning it to N
+for i in range(N): # repeating loop N times
+ print(' '*(N-1-i),'*'*(2*i+1)) # creating N-1-i spaces and then printing 2*i+1 times '*'
+# the above logic is obtained by observing no.of spaces and * in each line. It is linked between line no and total no.of lines
+
+# printing half triangle by taking height of triangle as input
+
+n = int(input("Enter height of half triangle")) # reading a value from user and assigning it to n
+for i in range(0, n): # running the loop n times by assigning values for i from 0 to n(except n)
+  for j in range(0, i+1): # running the loop i+1 times by assigning values for j from 0 to i+1(except i+1)
+    print("*",end="") # printing * , here end="" used to continue the next step in same line
+  print() # this print makes a new line
+
+<or>
+
+n = int(input("Enter height of half triangle")) # reading a value from user and assigning it to n
+for i in range(n): # repeating loop for n times
+ print("*"*(i+1)) # printing * i+1 times as i starts from 0
+ 
+# double sides stair-case pattern
+
+N = int(input("Enter no.of steps(Each step has length 2)")) # reading user input and assigning it to N
+dN = N # duplicating N to dN
+n = 2*N # assigning n to 2 times N because each step has length 2
+x = [] # empty list for output
+a = [] # empty list for creating output list x
+for i in range(0,n): # iterating i through 0 to n except n, running loop n times
+  a.append(' ') # ' ' is added to list a
+for i in range(0,N): # iterating i through 0 to N except N, running loop N times
+  x.append(a.copy()) # a is added to list x, here a.copy() should be used instead of a because we change it by value but directly giving a makes it as a reference value(address)
+for i in range(1,N+1): # iterating i through 1 to N+1 except N+1
+  for j in range(0,(2*i)): # iterating j through 0 to 2*i except 2*i
+    x[i-1][N+i-j-1] = "*" # assigning * to x[i-1][N+i-j-1]
+  dN = dN + 1 # incrementing dN by 1
+for i in range(N): # running the loop N times
+  for k in range(0,2): # running the loop 2 times
+   for j in range(n): # running the loop n times
+     print(x[i][j],end = " ") # printing stair case, end = " " is used to continue print in same line
+   print() # this print is used to break the print to next line
+
+<or>
+
+N = int(input("Enter no.of steps(Each step has length 2 and width 2)")) # reading user input and assigning it to N
+for i in range(N):
+ for j in range(2):
+  print("  "*(N-1-i),"* "*(2*(i+1)))
+
+# In any of the above cases, we you would like to take a command line input rather than a user input, then we can use a simple statement
+
+import sys # this imports system
+N = int(sys.argv[1]) # argv is a list containing command line inputs, where the first one always remains the file name and from index 1 onwards our command line inputs get stored
