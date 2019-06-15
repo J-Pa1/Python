@@ -1,0 +1,50 @@
+# basic set operations
+s1 = {1,2,3} # intializing values to set s1
+s2 = {2,3,4} # intializing values to set s2
+s3 = s1.union(s2) # creating new set s3 containing elements of both s1 and s2, here {1,2,3,4}
+print(s3) # printing set s3
+s4 = s1.intersection(s2) # creating new set s4 containing elements which are common betwenn s1 and s2, here {2,3}
+print(s4) # printing set s4
+# for more set functions, dir(set) gives you list of functions that can be applied on a given set 
+
+# identifying common keys and unique keys from 2 dictionaries (using lists and loops)
+d1 = {1:'one',2:'two'} # intializing values for dictionary d1
+d2 = {2:'two',3:'three',4:'four'} # intializing values for dictionary d2
+l1=d1.keys() # creating a list l1 of keys from d1 dictionary
+l2=d2.keys() # creating a list l2 of keys from d2 dictionary
+l = [] # creating an empty list l, for list l1 values
+L = [] # creating an empty list L, for list l2 values
+for i in l1: # iterating i through list l1
+  if (i not in l): # checking if i is not present in l
+    l.append(i) # then add i to l
+for i in l2: # iterating i through list l2
+  if (i in l): # checking if i is in l
+    l.remove(i) # remove i from l
+for i in l2: # iterating i through list l2
+  if (i not in L): # checking if is not present in L
+    L.append(i) # add i to L
+for i in l1: # iterating i through list l1
+  if (i in L): # checking if i in L
+    L.remove(i) # remove i from L
+for i in L: # iterating i through L
+  l.append(i) # adding i to l
+print("Keys only in d1 and d2 are ",l) # printing l, here l is unqiue values of l1, L is unique values of l2, in the above for loop we joined them together and formed the unique keys in list l
+l = [] # re initializing l to empty list, for list l1
+L = [] # re initializing L to empty list, for list l2
+l1=d1.keys() # l1 is list of keys of dictionary d1
+l2=d2.keys() # l2 is list of keys of dictionary d2
+for i in l1: # interating i through l1
+  for j in l2: # interating j through l2
+    if (i==j): # checking condition i and j to be equal
+      L.append(j) # then add it to list L
+print("Keys comman between d1 and d2 are ",L) # printing list L, which contain common values of l1 and l2
+
+# identifying common keys and unique keys from 2 dictionaries (using sets)
+d1 = {1:'one',2:'two'} # intializing values for dictionary d1
+d2 = {2:'two',3:'three',4:'four'} # intializing values for dictionary d2
+s1 = set(d1.keys()) # key values of dictionary d1 are converted to set and assigned to s1
+s2 = set(d2.keys()) # key values of dictionary d2 are converted to set and assigned to s2
+s3 = s1.symmetric_difference(s2) # unique values from both s1 and s2 stored in s3
+print("Unique values are:",s3) # printing s3
+s4 = s1.intersection(s2) # common values from both s1 and s2 stored in s4
+print("Common values are:",s4) # printing s4
