@@ -1,0 +1,135 @@
+# Creating module named calc.py with 2 functions add and mul and then use it from a python file useCalc.py
+
+# calc.py module:
+def add(i1,i2): # def is syntax for defining function, add is function name and i1 and i2 are input parameters for function
+  return i1+i2 # return returns the value i1+i2 as output
+def mul(i1,i2): # def is syntax for defining function, mul is function name and i1 and i2 are input parameters for function
+  return i1*i2 # return returns the value i1*i2 as output
+
+# useCalc.py file:
+from calc import * # imports complete module calc because of *
+print("Using add function to add 1,2 ",add(1,2)) # here function add of calc can be used now and output will have 3
+print("Using mul function to multiply 3,4 ",mul(3,4)) # here function mul calc can be used now and output will habe 12
+
+# using functions of calc by giving default values
+
+# calc.py module containing default values:
+def add(i1=0,i2=0): # here i1=0, i2=0 are default values assigned to parameters, these values are choosen when there is no parameter given while function call
+  return i1+i2
+def mul(i1=1,i2=1): # here i1=1, i2=1 are default values assigned to parameters, these values are choosen when there is no parameter given while function call
+  return i1*i2
+
+# useCalc.py file without giving parameters but yet gets executed because it contains default values in calc.py:
+from calc import *
+print("Using add without parameters ",add()) # here output will have 0 instead of error as 2 parameters are expected for function add
+print("Using mul without parameters ",mul()) # here output will have 1 instead of error as 2 parameters are expected for function mul
+
+# if calc.py module is in another file, then accessing it in useCalc.py can be done as follows:
+import sys # imports sys file
+sys.path.append("C:\\Python\\MyPro\\temp") # path of calc.py module is added to path of sys, so that calc can be accessed from useCalc.py 
+from calc import * # complete calc module is imported
+print("Using add function to add 1,2 ",add(1,2)) # output will be 3 instead of error of having calc not found in directory
+print("Using mul function to multiply 3,4 ",mul(3,4)) # output will be 12 instead of error of having calc not found in directory
+
+# variable no.of parameters
+
+# python function having default values as parameters
+print("Let the default values be 0,1,2")
+def add(a = 0, b = 1, c = 2):
+  return a+b+c
+print("Passing no arguement- ",add())
+print("Passing 1 arguement 1- ",add(1))
+print("Passing 2 arguements 1 2- ",add(1,2))
+print("Passing 3 arguements 1 2 3- ",add(1,2,3))
+# here we called function add by giving any no.of parameters less than max limit 3
+
+# python program using list as argument to add function
+l = [1,2,3]
+print("Let the list be -",l)
+def add(a = 0, b = 1, c = 2):
+  return a+b+c
+print("Calling function by sending the above list as arguement -",add(*l))
+# here we used list values as input argument to add function, max limit of list is 3
+
+# python program using dictionary values as argument to add function
+def add(a = 0, b = 1, c = 2):
+  return a+b+c
+d = {'a':1 , 'b':2 , 'c':3 }
+print("Let the dictionary be ",d)
+print("Calling function by sending key values in a dictionary - ",add(**d))
+# here we used dictionary's values as argument to add function, max limit of dictionary is 3
+
+# python program by taking n no.of values from list
+def add(*kargs):
+  sum = 0
+  for i in kargs:
+    sum = sum + i
+  return sum
+print("Let positional arguments be 1,2 - ",add(1,2))
+print("Let positional arguments be 1,2,3 - ",add(1,2,3))
+print("Let positional arguments be 1,2,3,4 - ",add(1,2,3,4))
+# here we used list values as argument to add function, max limit of list can be anything
+
+# python program by taking n no.of values from dictionary values
+def add(**kwargs):
+  sum = 0
+  for i in kwargs:
+    sum = sum + kwargs[i]
+  return sum
+print("Let positional arguments be a,1 b,2 - ",add(a=1,b=2))
+print("Let positional arguments be a,1 b,2 c,3 - ",add(a=1,b=2,c=3))
+print("Let positional arguments be a,1 b,2 c,3 d,4 - ",add(a=1,b=2,c=3,d=4))
+# here we used dictionary's values as argument to add function, max limit can be anything
+
+# python program by taking n no.of values from lists and dictionary values
+def add(*kargs,**kwargs):
+  sum = 0
+  for i in kargs:
+    sum = sum + i
+  for i in kwargs:
+    sum = sum + kwargs[i]
+  return sum
+print("Let positional arguments be 1,2,(a,3) - ",add(1,2,a=3))
+print("Let positional arguments be 1,2,3,(a,4),(b,5) - ",add(1,2,3,a=4,b=5))
+print("Let positional arguments be 1,2,3,4,(a,5),(b,6),(c,7) - ",add(1,2,3,4,a=5,b=6,c=7))
+# here we used list and dictionary's key values as arguments to add function, max limit can be anything for both
+
+# sorted function
+# sorted function sorts the list givin as first argument, by applying function name given as second argument key. The function gets applied on every element of list and then list gets sorted in ascending order of output of function
+
+# example 1
+def f(i):
+  return len(i)
+x = ['ab','abc','a']
+print("Choosen list be ",x)
+x = sorted(x,key=f)
+print("Sorted list is ",x)
+# here x is sorted in order of key function output of f, so ans would be ['a','ab','abc']
+
+# example 2
+def f(i):
+  sum = 0
+  for k in i:
+    sum = sum + k
+  return sum
+x = [[1, 2, 3], [4, 5, 6], [1, 2, 1], [1, 3, 4]]
+print("Chosen list be ",x)
+x = sorted(x,key=f)
+print("Sorted list is ",x)
+# here list x is sorted in order of key function output of f, so ans would be [[1,2,1],[1,2,3],[1,3,4],[4,5,6]]
+
+# example 3
+def f(e):
+  if type(e).__name__ == 'int' :
+    return 1000 + e
+  if type(e).__name__ == 'str' :
+    return 2000 + len(e)
+  if type(e).__name__ == 'list' :
+    return 3000 + len(e)
+  if type(e).__name__ == 'dict' :
+    return 4000 + len(e)
+x = [1,'a',[1,2], 2, 'ab', 'xyz', {'a':1, 'b':2}, [1,2,3,4]]
+print("Chosen list be ",x)
+x = sorted(x,key=f)
+print("Sorted list is ",x)
+# this is sorting elements according to their type, int,str,list and dict order and each int,str,list and dict is in order of their length or value
