@@ -1,0 +1,22 @@
+# List comprehension is a kind of single line assginment of list that can be obtained on performing for and if loops, it shortens the length of code
+
+# printing factors using list comprehensions
+def fac(n):
+  return [i for i in range(2,n) if n%i == 0] # returning list, which contains element i, where i traverses through range 2 to n, and only if n%i=0, i is added to the list
+
+x = int(input("Enter number to get its factor: ")) # general output statement
+print(fac(x)) # calling function fac
+
+# printing dictionary of number as key and list of factors as values
+def fac(n):
+  return [i for i in range(2,n) if n%i == 0] # returning list, which contains element i, where i traverses through range 2 to n, and only if n%i=0, i is added to the list
+x = int(input("Enter max limit of numbers to use in dict, starts from 1")) # obtaining limit from user 
+d = dict([(i,fac(i)) for i in range(1,x+1)]) # i traverses through range 1 to x+1(means till x), and i and fac(i) are output as list and these values together gets converted into dictionary by dict function
+print("Dictionary is ",d) # printing output
+
+# identifying prime numbers using above fac() method
+def fac(n):
+  return [i for i in range(2,n) if n%i == 0] # returning list, which contains element i, where i traverses through range 2 to n, and only if n%i=0, i is added to the list
+x = int(input("Enter max limit of prime numbers")) # asking user for input (limit)
+prime = [i for i in range(1,x+1) if len(fac(i))==0] # i traverses through 1 to x+1(till x) and if fac(i) a function which returns lists, have length 0, then i is added to list prime
+print("Prime numbers are: ",prime[1:]) # printing primes (0 is excluded because 1 is neither prime nor composite
