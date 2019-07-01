@@ -1,0 +1,22 @@
+# Exceptions are statements used to not provoke an runtime error, because once an error has been generated, code gets terminated
+# Here we use try block where we expect error to happen. Then we have except where we take actions to escape that error
+# Asserts are user made errors, this is mainly used to test. Here we ourselves make errors. Assert have a single line statement and simple syntax
+# In the belove program we ask user to enter age as input and convert it into int
+# If it is not an int, we get an error because suppose a char 'a' cannot get converted into int
+# To avoid that, we use execption except asking him to enter a valid input and repeat the loop. Once we get a valid input, we return the age value
+# This looping process is made only 5 times and for sixth time it gets into else printing limit exceeded 5
+# assert age>0 and age<100 makes if this condition is violated, then error gets poped out. If not gets violetd then output gets printed
+
+def getAge() :
+  age = None
+  for i in range(5):
+    try:
+      age = int(input("Enter age"))
+      return age
+    except:
+      print("Enter valid input")
+  else:
+    print("Limit of 5 exceeded")
+age = getAge()
+assert age>0 and age<100
+print("Age is ",age)
