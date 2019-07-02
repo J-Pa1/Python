@@ -1,0 +1,32 @@
+# demo program for describing oop in python
+
+class Bag : # class declaration, in general classname starts with capital
+  __privatevar = 'private variable' # in general private variables are started with __ , they are declared normally. Here it is also class variable
+  def __init__(self) : # __init__(self) is a constructor kind of function in which we declare all global variables
+    self.size = 1
+    self.contents = []
+  
+  def getprivate(): # class function, here it is used to access private class variable
+    print("Displaying private variable : ",Bag.__privatevar)
+  
+  def add(self,a) : # class function, here it adds elements to contents list
+    self.contents.append(a)
+
+class LaptopBag(Bag): # here LaptopBag is sub class of bag 
+  def __init__(self,color): # constructor of LaptopBag
+    super().__init__() # calling constructor of parent
+    self.color = 'Black' # new attribute of sub class
+# end of class definition, known by indentation
+
+bag = Bag() # creating an object bag of class Bag
+print("Bag size is : ",bag.size) # printing size variable of object bag
+bag.add('item1') # using add function
+bag.add('item2')
+print("Bag contents are : ",bag.contents) # printing contents list of object bag 
+Bag.getprivate() # accessing private variable using function getprivate() declared in class Bag
+lap = LaptopBag('Blue') # creating an object lap of class LaptopBag
+print("Laptop bag with color: ",lap.color) # accessing color attribute of object lap
+print("Laptop bag with size: ",lap.size) # accessing size attribute of object lap( inherited from parent )
+lap.add('lapitem1') # using add function of object lap ( inherited from parent )
+lap.add('lapitem2')
+print("Laptop bag items: ",lap.contents) # accessing contents list of object lap ( inherited from parent )
