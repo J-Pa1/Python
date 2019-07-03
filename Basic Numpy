@@ -1,0 +1,23 @@
+import numpy as np # importing numpy package to np
+
+nl = np.array([[1,2,3],[4,5,6],[7,8,9]]) # creating a 2d array
+print(nl[:2,:2]) # printing only 2 rows and 2 columns by slicing
+
+a = np.array([10,11,12]) # taking a single row array to be added
+nl = np.vstack([nl,a]) # adding row a
+print(nl) # printing updated array
+
+b = np.array([[101],[201],[301],[401]]) # taking a single column to be added
+nl = np.hstack([nl,b]) # adding column b
+print(nl) # pritning updated array
+
+nl = nl + [100,200,300,4000] # adding 100 200 300 4000 to column 1 2 3 4 respectively
+print(nl) # pritning updated array
+
+a,b = np.split(nl,2) # this split function of numpy returns 2 halves by cutting vertically (here axis is 0 by defualt)
+print(a) # printing first half
+print(b) # printing second half
+
+a,b = np.split(nl,2,axis=1) # this split function of numpy returns 2 halves by cutting horizontally (here axis is set to 1)
+print(a) # printing first half
+print(b) # printing second half
