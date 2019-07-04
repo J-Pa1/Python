@@ -1,0 +1,126 @@
+# here we use knn model and decision tree over iris data set to train the machine and predict possible outcomes
+
+from sklearn.datasets import load_iris # importing iris data set from sklearn
+import pandas as pd # importing pandas to pd
+import numpy as np # importing numpy to np
+import matplotlib.pyplot as plt # mat lab plot is imported to plot graph 
+
+iris_dataset = load_iris() # loading iris dataset
+
+print("Keys of iris_dataset:\n", iris_dataset.keys()) # keys of dataset are printed here ['data', 'target', 'target_names', 'DESCR', 'feature_names'])
+
+print(iris_dataset['DESCR'][:193] + "\n...") # printing description
+print("Target names:", iris_dataset['target_names']) # printing target names
+
+print("Feature names:\n", iris_dataset['feature_names']) # printing feature names
+
+print("Type of data:", type(iris_dataset['data'])) # printing type of data
+
+print("Shape of data:", iris_dataset['data'].shape) # printing shape of data shape, no.of rows and columns
+
+print("First five rows of data:\n", iris_dataset['data'][:5]) # printing first 5 rows of data to get overview
+
+print("Type of target:", type(iris_dataset['target'])) # printing type of target
+
+print("Shape of target:", iris_dataset['target'].shape) # printing shape of target, no.of rows and columns
+
+print("Target:\n", iris_dataset['target']) # printing all 150 target values
+
+# random_state is for randomizing data
+from sklearn.model_selection import train_test_split # importing train test split function 
+X_train, X_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state=0)
+# train test split is used to split the data, some to train and some to test the data, in general 75% goes for training and 25% for testing
+
+print("X_train shape:", X_train.shape) # shape of X_train, which is obtained for training the model
+print("y_train shape:", y_train.shape) # shape of y_train, which is obtained for training the model
+
+print("X_test shape:", X_test.shape) # shape of X_test, which is obtained for testing the model
+print("y_test shape:", y_test.shape) # shape of y_test, which is obtained for testing the mode
+
+iris_dataframe = pd.DataFrame(X_train, columns=iris_dataset.feature_names) # using pandas, we create a data frame from X_train
+
+pd.plotting.scatter_matrix(iris_dataframe, c=y_train, figsize=(15, 15),
+                           marker='o', hist_kwds={'bins': 20}, s=60,
+                           alpha=.8)
+# this plots a graph to know what are the parameters which can be used to identify the required parameters
+plt.show() # prints the graph
+
+from sklearn.neighbors import KNeighborsClassifier # KNN classifier is imported
+knn = KNeighborsClassifier(n_neighbors=3) # knn is choosed to be KNN classifer with no.of nearest neighbours to be 3
+
+knn.fit(X_train, y_train) # this now trains the model using input and output values
+# In KNN, all input values, such as here X_train are plotted in n dimensional graph, where n is no.of input values determined by shape of X_train
+# Then when a new value is been given, it searches for the nearest neighbour. Then among n nearest neighbours, here 3, mode of them is selected(ie. most repeated one) and then answer is obtained
+
+y_pred = knn.predict(X_test) # predicted values from X_test are taken and stored in y_pred
+print("Test set predictions:\n", y_pred) # y_pred is printed
+
+print("Test set score: {:.2f}".format(np.mean(y_pred == y_test))) # In order to find our prediction score, we use this method
+# here if y_pred and y_test are equal, (ie. right prediction) as a result of true 1 will be allocated, else 0 will be printed and its mean will be the test score
+
+from sklearn.tree import DecisionTreeClassifier # importing decison tree classifier
+
+dtc = DecisionTreeClassifier() # dtc be decison tree classifier
+dtc.fit(X_train, y_train) # decision tree system is made to train system by using train values of X_train and y_train
+# here things are arranged in tree form to get reach conclusion, and with least no.of children or node is chosen to be the head and results will be the root of tree
+
+y_pred = dtc.predict(X_test) # prediction of values from X_test
+
+print("Test set score: {:.2f}".format(np.mean(y_pred == y_test))) #comparing the y_pred to y_Test to know the test case
+
+# Here we can skip some steps and shorten the code if you wish only to train the machine to get output. Basic code looks like
+
+from sklearn.datasets import load_iris
+import numpy as np
+
+iris_dataset = load_iris()
+
+print("Keys of iris_dataset:\n", iris_dataset.keys())
+print("Target names:", iris_dataset['target_names'])
+print("Feature names:\n", iris_dataset['feature_names'])
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state=0)
+
+from sklearn.neighbors import KNeighborsClassifier
+
+knn = KNeighborsClassifier(n_neighbors=3)
+
+knn.fit(X_train, y_train)
+
+y_pred = knn.predict(X_test)
+
+print("Test set score: {:.2f}".format(np.mean(y_pred == y_test)))
+
+# Similarly we can skip some steps and make decision tree as well, code looks as follows
+
+from sklearn.datasets import load_iris
+import numpy as np
+
+iris_dataset = load_iris()
+
+print("Keys of iris_dataset:\n", iris_dataset.keys())
+
+print("Target names:", iris_dataset['target_names'])
+print("Feature names:\n", iris_dataset['feature_names'])
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state=0)
+
+from sklearn.tree import DecisionTreeClassifier
+
+dtc = DecisionTreeClassifier()
+dtc.fit(X_train, y_train)
+y_pred = dtc.predict(X_test)
+
+print("Test set score: {:.2f}".format(np.mean(y_pred == y_test)))
+
+# The above 2 codes are just necessary steps taken from the main code so hence we didnt provide any comments for explaination
+
+# NOTE:-
+# 1.We can load other data sets from sklearn such as breast cancer data set
+# 2.We can change no.of nearest neighbours to any number based on requirements, above we used 3, its value can be changed
+# 3.We can change partion of data set to test and train by introducing test_size parameter in train test split function. By default it is 0.75
+# 4.We can change random_state values to get different solutions, random_state is mentioned so that each time you run the code, the partion remains same
+# 5.Train test split function by default randomizes and then splits because randomization is helpful for effect training of machine
+# 6.When it comes to Iris Dataset, from the graph we can say that sepal width and sepal length, petal width and petal length are interdependent, so we can even train machine effectively by just using sepal length and petal lenth or sepal width and petal width
