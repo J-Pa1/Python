@@ -1,0 +1,43 @@
+# In linear regression, we make up a linear graph from input values and then rest of the values are predicted as per that linear line graph
+
+# linear regression for 2 multiplication table
+import sklearn # importing sklearn 
+import numpy as np # importing numpy to variable np
+
+x = np.array([[2,1],[2,5],[2,10]]) # creating a numpy 2D array with 2 and another variable
+y = np.array([2,10,20]) # creating a numpy output array for respected inputs
+
+from sklearn.linear_model import LinearRegression # Linear regression is imported
+
+lm = LinearRegression() # linear regression function is brought to lm
+lm.fit(x,y) # we fit input values and output values together
+
+print("Expecting output from 2 and 100 as inputs: ",lm.predict([[2,100]])) # for 2 and 100, we expect 200 as an ouptut.
+
+# linear regression on boston dataset
+import numpy as np # importing numpy to variable np
+import sklearn # importing sklearn
+
+from sklearn.datasets import load_boston # boston data set is loaded from sklearn
+boston = load_boston() # loaded boston dataset is stored in boston
+
+print(boston.keys()) # printing keys of dataset
+
+print(boston.data.shape) # printing shape of dataset
+
+print(boston.feature_names) # printing feature names
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(boston.data,boston.target, test_size = 0.33, random_state = 5)
+# spliting data set to 33% for training and 67% for testing and store them in X_test,X_train,Y_train,Y_test
+
+from sklearn.linear_model import LinearRegression # linear regression is imported
+
+lm = LinearRegression() # lm is assgined to linear regression
+lm.fit(X_train, Y_train) # training the model lm
+
+Y_pred = lm.predict(X_test) # prediction is made on test values and stored in Y_pred
+
+mse = sklearn.metrics.mean_squared_error(Y_test, Y_pred) # mean square error is made for Y_test and Y_pred
+print("Mean squared error is : ",mse) # printing mean square error value
+# NOTE: same thing can be done even on diabetes set available in sklearn itself
